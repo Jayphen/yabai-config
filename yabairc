@@ -1,0 +1,42 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+
+# mouse
+yabai -m config focus_follows_mouse autoraise
+yabai -m config mouse_follows_focus on
+yabai -m config mouse_modifier               ctrl
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
+
+#window_border
+yabai -m config window_border on
+yabai -m config window_border_width 2
+yabai -m config active_window_border_color color 0x00000000
+yabai -m config normal_window_border_color 0x00000000
+
+# global settings
+yabai -m config status_bar                   on
+yabai -m config window_shadow float
+
+#pad
+yabai -m config top_padding 9
+yabai -m config bottom_padding 9
+yabai -m config left_padding 9
+yabai -m config right_padding 9
+yabai -m config window_gap 9
+
+yabai -m config external_bar all:32:0
+
+# update titles
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_title_changed action="sketchybar --trigger title_change"
+
+# float preferences
+yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off border=off
+yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Stats$" sticky=on layer=above manage=off border=off
